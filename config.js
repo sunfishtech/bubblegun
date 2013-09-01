@@ -7,7 +7,8 @@ var conf = convict({
     doc: "The applicaton environment.",
     format: ["production", "development", "test"],
     default: "development",
-    env: "NODE_ENV"
+    env: "NODE_ENV",
+    arg: "env"
   },
   mqtt: {
     host: {
