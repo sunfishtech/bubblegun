@@ -1,0 +1,76 @@
+{
+  "catalog":{
+    "makers":[
+      {
+        "id":"Sunfish",
+        "name":"Sunfish Technology, Inc",
+        "models":[
+          {
+            "id":"QuadLight",
+            "name":"Breadboard Quadlight",
+            "versions":[
+              {
+                "version":"0.0.1",
+                "api":{
+                  "inputs":[
+                    {
+                      "command":"20",
+                      "name":"Set Color",
+                      "identifier":"setColor",
+                      "description":"Set the color of one (or all) pixels",
+                      "arguments":[
+                        {
+                          "name":"Color",
+                          "identifier":"color",
+                          "dataType":"string",
+                          "defaultValue":"0,0,0",
+                          "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
+                          "description":"An comma delimited RGB color in the format 'r,g,b'"
+                        },
+                        {
+                          "name":"Pixel Number",
+                          "identifier":"pixelNumber",
+                          "dataType":"integer",
+                          "minValue":0,
+                          "description":"Selects the pixel you want to set. 0 will set all pixels at once"
+                        },
+                        {
+                          "name":"Wipe Delay",
+                          "identifier":"wipeDelay",
+                          "dataType":"integer",
+                          "minValue":0,
+                          "maxValue":1000,
+                          "description":"When setting all pixels, this value determines how long (in ms) to wait between each pixel transition"
+                        }
+                      ]
+                    }
+                  ],
+                  "outputs":[
+                    {
+                      "command":"4",
+                      "readingType":"event",
+                      "name":"button1",
+                      "dataType":"integer",
+                      "values":{
+                        "0":"Off",
+                        "1":"On"
+                      },
+                      "defaultValue":0
+                    },
+                    {
+                      "command":"5",
+                      "readingType":"measurement",
+                      "name":"brightness",
+                      "dataType":"integer",
+                      "defaultValue":0.0
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -34,12 +34,19 @@ var conf = convict({
       env: "HTTP_PORT",
       arg:"http-port"
     }
+  },
+  catalog:{
+    makers:{
+      doc:"An array of maker definitions",
+      format:Array,
+      default:[]
+    }
   }
   
 });
 
 
-// load environment dependent configuration
+conf.loadFile('./catalog.json');
 
 var env = conf.get('env');
 conf.loadFile('./config/' + env + '.json');
