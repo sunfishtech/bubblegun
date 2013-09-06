@@ -41,6 +41,15 @@ var conf = convict({
       format:Array,
       default:[]
     }
+  },
+  mongo:{
+    uri:{
+      doc:"The connection string of the MongoDB database",
+      format:String,
+      default:"mongo://localhost:27017/bubblegun?auto_reconnect",
+      env: "MONGO_URI",
+      arg:"mongo-uri"
+    }
   }
   
 });
