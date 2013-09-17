@@ -43,6 +43,23 @@
                           "description":"When setting all pixels, this value determines how long (in ms) to wait between each pixel transition"
                         }
                       ]
+                    },
+                    {
+                      "command":"21",
+                      "name":"Rainbow",
+                      "identifier":"rainbow",
+                      "description":"Cycle all pixels through the color wheel. The current color is synchronized across all pixels.",
+                      "arguments":[
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":1000,
+                          "description":"The time to wait in between each step through the color wheel"
+                        }
+                      ]
                     }
                   ],
                   "outputs":[
