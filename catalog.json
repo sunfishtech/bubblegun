@@ -28,11 +28,18 @@
                           "description":"An comma delimited RGB color in the format 'r,g,b'. Passing 0 for each value will set each pixel to a different random color."
                         },
                         {
-                          "name":"Pixel Number",
-                          "identifier":"pixelNumber",
+                          "name":"x",
+                          "identifier":"x",
                           "dataType":"integer",
                           "minValue":0,
-                          "description":"Selects the pixel you want to set. 0 will set all pixels at once"
+                          "description":"Selects point on the x axis to set. 0 will set all pixels at once"
+                        },
+                        {
+                          "name":"y",
+                          "identifier":"y",
+                          "dataType":"integer",
+                          "minValue":1,
+                          "description":"Selects point on the y axis to set."
                         },
                         {
                           "name":"Wipe Delay",
