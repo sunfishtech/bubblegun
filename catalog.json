@@ -120,7 +120,7 @@
                           "name":"Delay",
                           "identifier":"delay",
                           "dataType":"integer",
-                          "defaultValue":10,
+                          "defaultValue":50,
                           "minValue":1,
                           "maxValue":1000,
                           "description":"The time to wait in between each step"
