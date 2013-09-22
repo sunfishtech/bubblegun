@@ -25,7 +25,7 @@
                           "dataType":"string",
                           "defaultValue":"0,0,0",
                           "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
-                          "description":"An comma delimited RGB color in the format 'r,g,b'"
+                          "description":"An comma delimited RGB color in the format 'r,g,b'. Passing 0 for each value will set each pixel to a different random color."
                         },
                         {
                           "name":"Pixel Number",
@@ -48,7 +48,7 @@
                       "command":"21",
                       "name":"Rainbow",
                       "identifier":"rainbow",
-                      "description":"Cycle all pixels through the color wheel. The current color is synchronized across all pixels.",
+                      "description":"Cycle all pixels through the color wheel.",
                       "arguments":[
                         {
                           "name":"Delay",
@@ -58,6 +58,159 @@
                           "minValue":1,
                           "maxValue":1000,
                           "description":"The time to wait in between each step through the color wheel"
+                        }
+                      ]
+                    },
+                    {
+                      "command":"23",
+                      "name":"Set Brightness",
+                      "identifier":"setBrightness",
+                      "description":"Set the brightness of the strip.",
+                      "arguments":[
+                        {
+                          "name":"Brightness",
+                          "identifier":"brightness",
+                          "dataType":"integer",
+                          "defaultValue":100,
+                          "minValue":0,
+                          "maxValue":255,
+                          "description":"The brightness of the strip where 0 is off and 255 is full brightness"
+                        }
+                      ]
+                    },
+                    {
+                      "command":"24",
+                      "name":"Turn Off",
+                      "identifier":"off",
+                      "description":"Turn off all pixels.",
+                      "arguments":[]
+                    },
+                    {
+                      "command":"25",
+                      "name":"Color Cycle",
+                      "identifier":"colorCycle",
+                      "description":"Cycle through the color wheel, where all pixels display the same color at once.",
+                      "arguments":[
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":1000,
+                          "description":"The time to wait in between each step through the color wheel"
+                        }
+                      ]
+                    },
+                    {
+                      "command":"26",
+                      "name":"Scan",
+                      "identifier":"scan",
+                      "description":"Light one pixel at a time in order, with an optional 'tracer' effect.",
+                      "arguments":[
+                       {
+                          "name":"Color",
+                          "identifier":"color",
+                          "dataType":"string",
+                          "defaultValue":"0,0,0",
+                          "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
+                          "description":"An comma delimited RGB color in the format 'r,g,b'. Sending 0 for each channel will select a different random color for each pixel."
+                        },
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":1000,
+                          "description":"The time to wait in between each step"
+                        },
+                        {
+                          "name":"Fade Step",
+                          "identifier":"fadeStep",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":255,
+                          "description":"The amount to fade the 'trail' of the moving pixel each step of the fade cycle. Determines how quicky the 'tracer' fades away."
+                        },
+                        {
+                          "name":"Fade Delay",
+                          "identifier":"fadeDelay",
+                          "dataType":"integer",
+                          "defaultValue":50,
+                          "minValue":1,
+                          "maxValue":255,
+                          "description":"The amount of time to wait between each 'fade cycle' - determines the smoothness of the tracer effect."
+                        }
+                      ]
+                    },
+                    {
+                      "command":"27",
+                      "name":"Dim",
+                      "identifier":"dim",
+                      "description":"Progressively change the brighness of the entire strip",
+                      "arguments":[
+                        {
+                          "name":"Brightness",
+                          "identifier":"brightness",
+                          "dataType":"integer",
+                          "defaultValue":100,
+                          "minValue":0,
+                          "maxValue":255,
+                          "description":"The desired brightness of the strip"
+                        },
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":1000,
+                          "description":"The time to wait in between each step towards the target brightness"
+                        }
+                      ]
+                    },
+                    {
+                      "command":"28",
+                      "name":"Rain",
+                      "identifier":"rain",
+                      "description":"Light one pixel at a time in a random spot on the strip, with an optional 'fade' effect.",
+                      "arguments":[
+                       {
+                          "name":"Color",
+                          "identifier":"color",
+                          "dataType":"string",
+                          "defaultValue":"0,0,0",
+                          "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
+                          "description":"An comma delimited RGB color in the format 'r,g,b'. Sending 0 for each channel will select a different random color for each pixel."
+                        },
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":1000,
+                          "description":"The time to wait in between each step"
+                        },
+                        {
+                          "name":"Fade Step",
+                          "identifier":"fadeStep",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":255,
+                          "description":"The amount to fade the 'trail' of the moving pixel each step of the fade cycle. Determines how quicky the 'tracer' fades away."
+                        },
+                        {
+                          "name":"Fade Delay",
+                          "identifier":"fadeDelay",
+                          "dataType":"integer",
+                          "defaultValue":50,
+                          "minValue":1,
+                          "maxValue":255,
+                          "description":"The amount of time to wait between each 'fade cycle' - determines the smoothness of the tracer effect."
                         }
                       ]
                     }
