@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= device.toString() %></title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">BubbleGun</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="main-content">
+        <h1><%=device.toString()%></h1>
+        <label>Command:</label>
+        <select id="commands"></select>
+
+        <div class="panel panel-default">
+          <div class="panel-body" id="command-details">
+            
+          </div>
+        </div>
+
+      </div>
+
+    </div><!-- /.container -->
+
+    <script src="/javascripts/jquery-1.10.2.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/Colors.js/1.2.3/colors.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var inputs = null;
+      var socket = null;
+
+      function initialize(){
+        var caturl = "/api/v1/catalog/Sunfish/QuadLight/0.0.1/api";
+        $.get(caturl).done(function(data){
+          inputs = data.inputs;
+          $.each(inputs, function(key, value) {   
+            $('#commands')
+              .append($('<option>', { value : key })
+              .text(value.name)); 
+          });
+
+          $("#commands").change(function(evt){
+            setCommand();
+          });
+
+          setCommand();
+        });
+      }
+
+      function initSockets(){
+        socket = io.connect('http://localhost');
+        
+      }
+
+      function setCommand(){
+        cmd = $("#commands").val();
+        var command = inputs[cmd];
+        $d = $("#command-details");
+        $d.empty();
+        _.each(command.arguments,function(arg){
+          addArg($d, arg);
+        });
+        var commander = _.debounce(sendCommand,1);
+        $("input").change(commander);
+        sendCommand();
+      }
+
+      function addArg($container,arg){
+        html = "<div>"
+        html += "<label>" + arg.name + "</label>";
+        html += inputFor(arg);
+        html += "</div>"
+        $container.append(html);
+      }
+
+      function inputFor(arg){
+        if (arg.dataType == "color"){
+          return "<input type='color' id='arg-" + arg.identifier + "'></input>";
+        } else if (arg.dataType == "integer") {
+          return "<input type='range' id='arg-" + arg.identifier + "' min=" + arg.minValue + " max=" + (arg.maxValue || 1000) + " value=" + (arg.defaultValue) + "></input>";
+        } else {
+          return "<input type='text' id='arg-" + arg.identifier + "'></input>";
+        }
+      }
+
+      function getArgValue(arg){
+        $i = $("#arg-" + arg.identifier);
+        var value = $i.val();
+        console.log(value);
+        if (arg.dataType == "color"){
+          return $c.hex2rgb(value).a.join(",");
+        } else {
+          return $i.val();
+        }
+      }
+
+      function sendCommand(){
+        cmd = $("#commands").val();
+        var command = inputs[cmd];
+        var message = {
+          deviceId:"abc123",
+          command:{
+            name:command.identifier
+          }
+        }
+        _.each(command.arguments,function(arg){
+          message.command[arg.identifier] = getArgValue(arg);
+        });
+        console.log(message);
+        socket.emit('command',message);
+      }
+
+      $(function(){
+        initialize();
+        initSockets();
+      });
+      
+    </script>
+  </body>
+</html>

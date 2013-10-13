@@ -22,7 +22,7 @@
                         {
                           "name":"Color",
                           "identifier":"color",
-                          "dataType":"string",
+                          "dataType":"color",
                           "defaultValue":"0,0,0",
                           "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
                           "description":"An comma delimited RGB color in the format 'r,g,b'. Passing 0 for each value will set each pixel to a different random color."
@@ -32,13 +32,15 @@
                           "identifier":"x",
                           "dataType":"integer",
                           "minValue":0,
+                          "defaultValue":0,
                           "description":"Selects point on the x axis to set. 0 will set all pixels at once"
                         },
                         {
                           "name":"y",
                           "identifier":"y",
                           "dataType":"integer",
-                          "minValue":1,
+                          "minValue":0,
+                          "defaultValue":0,
                           "description":"Selects point on the y axis to set."
                         },
                         {
@@ -47,6 +49,7 @@
                           "dataType":"integer",
                           "minValue":0,
                           "maxValue":1000,
+                          "defaultValue":0,
                           "description":"When setting all pixels, this value determines how long (in ms) to wait between each pixel transition"
                         }
                       ]
@@ -118,7 +121,7 @@
                        {
                           "name":"Color",
                           "identifier":"color",
-                          "dataType":"string",
+                          "dataType":"color",
                           "defaultValue":"0,0,0",
                           "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
                           "description":"An comma delimited RGB color in the format 'r,g,b'. Sending 0 for each channel will select a different random color for each pixel."
@@ -187,7 +190,7 @@
                        {
                           "name":"Color",
                           "identifier":"color",
-                          "dataType":"string",
+                          "dataType":"color",
                           "defaultValue":"100,100,120",
                           "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
                           "description":"An comma delimited RGB color in the format 'r,g,b'. Sending 0 for each channel will select a different random color for each pixel."
