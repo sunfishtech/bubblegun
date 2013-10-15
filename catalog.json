@@ -223,6 +223,49 @@
                           "description":"The amount of time to wait between each 'fade cycle' - determines the smoothness of the tracer effect."
                         }
                       ]
+                    },
+                    {
+                      "command":"29",
+                      "name":"Strobe",
+                      "identifier":"strobe",
+                      "description":"Light all pixels at once, letting them fade away between waits",
+                      "arguments":[
+                       {
+                          "name":"Color",
+                          "identifier":"color",
+                          "dataType":"color",
+                          "defaultValue":"100,100,120",
+                          "regex":"(\\d+),\\s*(\\d+),\\s*(\\d+)",
+                          "description":"An comma delimited RGB color in the format 'r,g,b'. Sending 0 for each channel will select a different random color for each pixel."
+                        },
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":50,
+                          "minValue":1,
+                          "maxValue":1000,
+                          "description":"The time to wait in between each step"
+                        },
+                        {
+                          "name":"Fade Step",
+                          "identifier":"fadeStep",
+                          "dataType":"integer",
+                          "defaultValue":10,
+                          "minValue":1,
+                          "maxValue":255,
+                          "description":"The amount to fade the 'trail' of the moving pixel each step of the fade cycle. Determines how quicky the 'tracer' fades away."
+                        },
+                        {
+                          "name":"Fade Delay",
+                          "identifier":"fadeDelay",
+                          "dataType":"integer",
+                          "defaultValue":50,
+                          "minValue":1,
+                          "maxValue":255,
+                          "description":"The amount of time to wait between each 'fade cycle' - determines the smoothness of the tracer effect."
+                        }
+                      ]
                     }
                   ],
                   "outputs":[
