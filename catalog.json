@@ -32,6 +32,7 @@
                           "identifier":"x",
                           "dataType":"integer",
                           "minValue":0,
+                          "maxValue":8,
                           "defaultValue":0,
                           "description":"Selects point on the x axis to set. 0 will set all pixels at once"
                         },
@@ -40,6 +41,7 @@
                           "identifier":"y",
                           "dataType":"integer",
                           "minValue":0,
+                          "maxValue":8,
                           "defaultValue":0,
                           "description":"Selects point on the y axis to set."
                         },
@@ -264,6 +266,32 @@
                           "minValue":1,
                           "maxValue":255,
                           "description":"The amount of time to wait between each 'fade cycle' - determines the smoothness of the tracer effect."
+                        }
+                      ]
+                    },
+                    {
+                      "command":"30",
+                      "name":"Set Color Mode",
+                      "identifier":"setColorMode",
+                      "description":"Change how and how quicky colors transition.",
+                      "arguments":[
+                       {
+                          "name":"Color Mode",
+                          "identifier":"colorMode",
+                          "dataType":"integer",
+                          "defaultValue":0,
+                          "minValue":0,
+                          "maxValue":2,
+                          "description":"How should colors cycle over time? 0:Static, 1:Random, 2:Color Wheel"
+                        },
+                        {
+                          "name":"Delay",
+                          "identifier":"delay",
+                          "dataType":"integer",
+                          "defaultValue":50,
+                          "minValue":1,
+                          "maxValue":5000,
+                          "description":"The time to wait in between each color step"
                         }
                       ]
                     }
