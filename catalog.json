@@ -159,22 +159,22 @@
                     },
                     {
                       "command":"27",
-                      "name":"Dim",
-                      "identifier":"dim",
+                      "name":"Fade",
+                      "identifier":"fade",
                       "description":"Progressively change the brighness of the entire strip",
                       "arguments":[
                         {
-                          "name":"Brightness",
-                          "identifier":"brightness",
+                          "name":"Fade Step",
+                          "identifier":"fadeStep",
                           "dataType":"integer",
-                          "defaultValue":100,
+                          "defaultValue":10,
                           "minValue":0,
                           "maxValue":255,
-                          "description":"The desired brightness of the strip"
+                          "description":"The amount to fade the display each step"
                         },
                         {
-                          "name":"Delay",
-                          "identifier":"delay",
+                          "name":"Fade Delay",
+                          "identifier":"fadeDelay",
                           "dataType":"integer",
                           "defaultValue":10,
                           "minValue":1,
